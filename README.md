@@ -14,6 +14,9 @@ mejoras del proyecto.
 	6. Objetivos y Funcionalidades (SMART)
 		1. Objetivo General
 		2. Objetivos Funcionales
-## Notificaciones
-
-Deberemos de implementar mas tarde el centro de notificaciones y deberemos de añadir mas ajustes de las notificaciones como el correo electrónico o notificaciones de sonidos al entrar salir de un canal / llamadas
+2. [Segunda Entrega](Entregas/Segunda-Entrega.md)
+3. [Tercera Entrega](Entregas/Tercera-Entrega.md)
+4. [Cuarta Entrega](Entregas/Cuarta-Entrega.md)
+5. [Quinta Entrega](Entregas/Quinta-Entrega.md)
+6. [Sexta Entrega](Entregas/Sexta-Entrega.md)
+---
