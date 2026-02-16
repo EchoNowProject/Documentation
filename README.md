@@ -27,16 +27,16 @@ mejoras del proyecto.
 6. [Sexta Entrega](Entregas/Sexta-Entrega.md)
 7. [Siglas y Acrónimos](Entregas/Siglas-Acronimos.md)
 ---
+
+## Licencia
+
+Licencia
+Esta obra está bajo una licencia Reconocimiento-Compartir bajo la misma licencia 3.0 España de Creative Commons. Para ver una copia de esta licencia, visite [Licencia CC](http://creativecommons.org/licenses/by-sa/3.0/es/) o envíe una carta a Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.  
+  
+  
 ### Identificación del Proyecto  
 
 **Autor:** Antonio José Blázquez Jiménez
 **Ciclo:**  Desarrollo de Aplicaciones Web  
-**Responsable de la documentación:** Serafina Martín Marcos  
-**Institución:** I.E.S. VENANCIO BLANCO, SALAMANCA   
-<div>
-  <div style="background-color: white; display: inline-block; padding: 20px;">
-    <img src="https://iesvenancioblanco.es/wp-content/uploads/2025/03/logo_solo.png" 
-         alt="Logotipo Venancio Blanco" 
-         width="150"/>
-  </div>
-</div>
+**Responsable:** Serafina Martín Marcos  
+**Institución:** I.E.S. VENANCIO BLANCO, SALAMANCA

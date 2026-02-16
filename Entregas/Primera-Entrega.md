@@ -10,8 +10,8 @@ En este primer entregable sentaré las bases de todo el desarrollo. Justificaré
 - [Herramientas y Tecnologías](#herramientas-y-tecnologías)
 - [Guion de Trabajo](#guion-de-trabajo)
 - [Definición de objetivos y funcionalidades (SMART)](#definición-de-objetivos-y-funcionalidades-smart)
-		- [Objetivo General](#objetivo-general)
-		- [Objetivos Funcionales](#objetivos-funcionales)
+	- [Objetivo General](#objetivo-general)
+	- [Objetivos Funcionales](#objetivos-funcionales)
 
 ---
 ## Memoria Inicial 
@@ -92,6 +92,30 @@ Además de estas herramientas básicas que he nombrado también debemos de tener
 
 Las funcionalidades definen las acciones y capacidades específicas que el sistema debe ejecutar para satisfacer las necesidades del usuario.  
  
-### Objetivo General
+- ### Objetivo General
 
-### Objetivos Funcionales
+El objetivo general se podría generalizar en **5** grandes módulos
+
+| Concepto                          | Descripción                                                                            | Análisis                                                                                                                                                                                                                       |
+| --------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Mensajería en Tiempo Real**     | Sistema de chat instantáneo para usuarios, grupos y canales con persistencia de datos. | **S:** Chat de texto persistente.<br>**M:** Por la baja latencia<br>**A:** <br>**R:** Es la pieza clave de la app                                                                                                              |
+| **Infraestructura y Despliegue**  | Puesta en marcha del ecosistema en servidores reales para acceso público.              | **S:** Despliegue de Backend y Frontend.<br>**M:** Tiene una Disponibilidad del 99%.<br>**A:** Ajustado al presupuesto de 50€-90€.<br>**R:**                                                                                   |
+| **Gestión de Servidores y Roles** | Estructura jerárquica para comunidades con permisos de administración específicos.     | **S:** Sistema de permisos  funcional.<br>**M:** Control de acceso por canal.<br>**A:** Es alcanzable mediante Laravel <br>**R:** Prioridad para el control sobre usuarios                                                     |
+| **Comunicación (VoIP)**           | Capacidad de realizar llamadas de voz entre usuarios o dentro de servidores.           | **S:** Audio bidireccional estable.<br>**M:** Claridad de voz sin cortes en redes<br>**A:**<br>**R:**                                                                                                                          |
+| **Diseño de la Interfaz**         | Diseño limpio, intuitivo y enfocado en la productividad sin saturación visual.         | **S:** Interfaz responsiva con TailwindCSS.<br>**M:** Lo podremos medir con [Google Lighthouse](https://pagespeed.web.dev/?hl=es-419).<br>**A:** Desarrollo basado en componentes.<br>**R:** Facilita el uso por la aplicación |
+  
+  No he puesto el tiempo porque no sabemos cuando va a durar cada parte del desarrollo
+- ### Objetivos Funcionales
+  
+Los  Objetivos funcionales se distribuirán de la siguiente manera:  
+
+| ID        | MODULO                                       | Descripción                                                                   | SMART                                                                                                                           | Prioridad |
+| --------- | -------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| **OBJ01** | **Registro y Acceso**                        | Sistema de autenticación de usuarios para permitir el uso de la aplicación.   | **S:** Acceso con usuario/clave.<br>**M:** Validación de credenciales en DB.<br>**T:** (Semana 1).                              | Alta      |
+| **OBJ02** | **Mensajería**                               | Chat de texto privado entre dos usuarios con visualización instantánea.       | **S:** Envío/recepción de texto.<br>**M:** Latencia menor a 1s.<br>**T:** (Semanas 2-4).                                        | Alta      |
+| **OBJ03** | **Servidores Públicos**                      | Espacios accesibles mediante URL o invitación con múltiples canales.          | **S:** Estructura de canales independientes.<br>**M:** Soporta múltiples canales/servidor.<br>**T:** (Semanas 6-8).             | Alta      |
+| **OBJ04** | **Interfaz**                                 | Panel de navegación intuitivo                                                 | **S:** Interfaz con TailwindCSS y React.<br>**M:** mínimo 90 puntos  en Lighthouse.<br>**T:** Duración del proyecto             | Alta      |
+| **OBJ05** | **Roles en servidores**                      | Asignación de permisos jerárquicos a usuarios dentro de los servidores.       | **S:** Asignación de permisos específicos.<br>**M:** Niveles de jerarquía especificados por un lider<br>**T:** (Semana 8 - 10). | Media     |
+| **OBJ06** | **Comunicación [VoIP](Siglas-Acronimos.md)** | Implementación de llamadas de voz entre usuarios y en canales de servidor.    | **S:** Audio bidireccional.<br>**M:** Conexión estable sin cortes.<br>**T:** Fase 3 (Semanas 10-12).                            | Media     |
+| **OBJ07** | **Gestión de Grupos**                        | Creación de salas de chat cerradas con un administrador y lista de invitados. | **S:** Creación de grupo y miembros.<br>**M:** 1 rol de administrador.<br>**T:** (Semanas 4-6).                                 | Media     |
+| **OBJ08** | **Implementación [IA](Siglas-Acronimos.md)** | Conexion a una Inteligencia artificial externa                                | **S:** Integración vía API externa.<br>**T:** (Semanas 12- Fin de proyecto).                                                    | Baja      |
