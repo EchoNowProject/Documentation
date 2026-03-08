@@ -24,15 +24,15 @@ Esta obra está bajo una licencia Reconocimiento-Compartir bajo la misma licenci
 	1.  [Objetivos del Proyecto](#Objetivos-del-Proyecto)
 		1. [Objetivo General](#objetivo-general)
 		2. [Objetivos Funcionales](#objetivos-funcionales)
-	2. Definiciones de Actores
-	3. Especificación Funcional
-		1. Diagrama de Casos de Uso 
-		2. Tablas de especificación de Casos de Uso
-	4. Requisitos del Sistema (SRS)
-	      	1. Requisitos Funcionales (RF).
-	      	2. Requisitos No Funcionales (RNF).
-	      	3. Requisitos de Información (IRQ - Persistencia).  
-	5. Normativa y Legislación.   
+	2. [Definiciones de Actores](#definiciones-de-actores)
+	3. [Especificación Funcional](#especificación-funcional)
+		1. [Diagrama de Casos de Uso](#diagrama-de-casos-de-uso) 
+		2. [Tablas de especificación de Casos de Uso](#tablas-de-especificación-de-casos-de-uso)
+	4. Requisitos del Sistema (SRS)  
+	      	1. Requisitos Funcionales (RF)  
+	      	2. Requisitos No Funcionales (RNF)  
+	      	3. Requisitos de Información (IRQ - Persistencia)  
+	5. [Normativa y Legislación](#normativa-y-legislación)   
 3. [Diseño Tecnológico y Arquitectura](Diseño_Tecnológico_Arquitectura.md)
 	1. Stack Tecnológico  
 	2. Arquitectura del Software  
@@ -393,18 +393,176 @@ El objetivo general se podría generalizar en **5** grandes módulos
   
 Los  Objetivos funcionales se distribuirán de la siguiente manera:  
 
-| ID        | MODULO                                                     | Descripción                                                                   | SMART                                                                                                                                                                                                                                                                                                                                 | Prioridad |
-| --------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| **OBJ01** | **Registro y Acceso**                                      | Sistema de autenticación de usuarios para permitir el uso de la aplicación.   | **S:** Acceso con usuario/clave.<br>**M:** Validación correcta de credenciales en base de datos con tasa de error inferior al 1%.<br>**A:** Laravel 12 proporciona sistemas de autenticación listos para usar.<br>**R:** Es imprescindible para garantizar seguridad y control de acceso a la aplicación.<br>**T:** Implementación en la semana 1. | Alta      |
-| **OBJ02** | **Mensajería**                                             | Chat de texto privado entre dos usuarios con visualización instantánea.       | **S:** Envío y recepción de mensajes en tiempo real.<br>**M:** Latencia inferior a 1 s con RTT optimizado y disponibilidad del 99.9%.<br>**A:** Implementable con Laravel 12, Node.js v24 y WebSockets con persistencia en PostgreSQL 18.<br>**R:** Constituye la funcionalidad principal y núcleo de la aplicación.<br>**T:** Desarrollo en semanas 2-4. | Alta      |
-| **OBJ03** | **Servidores Públicos**                                    | Espacios accesibles mediante URL o invitación con múltiples canales.          | **S:** Creación de servidores con canales independientes.<br>**M:** Soporte para al menos 50 canales por servidor sin degradación de rendimiento.<br>**A:** Posible con gestión estructurada en Laravel y PostgreSQL y renderizado dinámico en React.<br>**R:** Permite escalar la aplicación y fomentar comunidades organizadas.<br>**T:** Desarrollo en semanas 6-8. | Alta      |
-| **OBJ04** | **Interfaz**                                               | Panel de navegación intuitivo                                                 | **S:** Interfaz desarrollada con React y TailwindCSS.<br>**M:** Puntuación mínima de 90 en Google Lighthouse y diseño 100% responsive.<br>**A:** Alcanzable mediante arquitectura basada en componentes reutilizables.<br>**R:** Mejora la experiencia de usuario y favorece la adopción de la plataforma.<br>**T:** Desarrollo continuo durante semanas 1-12. | Alta      |
-| **OBJ05** | **Roles en servidores**                                    | Asignación de permisos jerárquicos a usuarios dentro de los servidores.       | **S:** Sistema de roles y permisos jerárquicos.<br>**M:** Definición de al menos 3 niveles jerárquicos funcionales con validación automática de permisos.<br>**A:** Implementable mediante el sistema de autorización de Laravel 12.<br>**R:** Garantiza la seguridad y organización interna de cada servidor.<br>**T:** Desarrollo en semanas 8-10. | Media     |
+| ID        | MODULO                                                     | Descripción                                                                   | SMART                                                                                                                                                                                                                                                                                                                                                                                  | Prioridad |
+| --------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| **OBJ01** | **Registro y Acceso**                                      | Sistema de autenticación de usuarios para permitir el uso de la aplicación.   | **S:** Acceso con usuario/clave.<br>**M:** Validación correcta de credenciales en base de datos con tasa de error inferior al 1%.<br>**A:** Laravel 12 proporciona sistemas de autenticación listos para usar.<br>**R:** Es imprescindible para garantizar seguridad y control de acceso a la aplicación.<br>**T:** Implementación en la semana 1.                                     | Alta      |
+| **OBJ02** | **Mensajería**                                             | Chat de texto privado entre dos usuarios con visualización instantánea.       | **S:** Envío y recepción de mensajes en tiempo real.<br>**M:** Latencia inferior a 1 s con RTT optimizado y disponibilidad del 99.9%.<br>**A:** Implementable con Laravel 12, Node.js v24 y WebSockets con persistencia en PostgreSQL 18.<br>**R:** Constituye la funcionalidad principal y núcleo de la aplicación.<br>**T:** Desarrollo en semanas 2-4.                              | Alta      |
+| **OBJ03** | **Servidores Públicos**                                    | Espacios accesibles mediante URL o invitación con múltiples canales.          | **S:** Creación de servidores con canales independientes.<br>**M:** Soporte para al menos 50 canales por servidor sin degradación de rendimiento.<br>**A:** Posible con gestión estructurada en Laravel y PostgreSQL y renderizado dinámico en React.<br>**R:** Permite escalar la aplicación y fomentar comunidades organizadas.<br>**T:** Desarrollo en semanas 6-8.                 | Alta      |
+| **OBJ04** | **Interfaz**                                               | Panel de navegación intuitivo                                                 | **S:** Interfaz desarrollada con React y TailwindCSS.<br>**M:** Puntuación mínima de 90 en Google Lighthouse y diseño 100% responsive.<br>**A:** Alcanzable mediante arquitectura basada en componentes reutilizables.<br>**R:** Mejora la experiencia de usuario y favorece la adopción de la plataforma.<br>**T:** Desarrollo continuo durante semanas 1-12.                         | Alta      |
+| **OBJ05** | **Roles en servidores**                                    | Asignación de permisos jerárquicos a usuarios dentro de los servidores.       | **S:** Sistema de roles y permisos jerárquicos.<br>**M:** Definición de al menos 3 niveles jerárquicos funcionales con validación automática de permisos.<br>**A:** Implementable mediante el sistema de autorización de Laravel 12.<br>**R:** Garantiza la seguridad y organización interna de cada servidor.<br>**T:** Desarrollo en semanas 8-10.                                   | Media     |
 | **OBJ06** | **Comunicación [VoIP](#glosario-de-términos-y-acrónimos)** | Implementación de llamadas de voz entre usuarios y en canales de servidor.    | **S:** Comunicación de audio bidireccional en tiempo real.<br>**M:** Latencia menor a 150 ms y pérdida de paquetes inferior al 2% en red estable.<br>**A:** Implementable con WebRTC integrado en React y soporte de señalización en Node.js.<br>**R:** Amplía las capacidades de comunicación y aumenta el valor competitivo de la aplicación.<br>**T:** Desarrollo en semanas 10-12. | Media     |
-| **OBJ07** | **Gestión de Grupos**                                      | Creación de salas de chat cerradas con un administrador y lista de invitados. | **S:** Creación y administración de grupos privados.<br>**M:** Soporte para al menos 100 usuarios por grupo con 1 administrador activo.<br>**A:** Alcanzable con gestión de relaciones en PostgreSQL y control de permisos en Laravel.<br>**R:** Facilita la organización de conversaciones privadas dentro de la plataforma.<br>**T:** Desarrollo en semanas 4-6. | Media     |
-| **OBJ08** | **Implementación [IA](#glosario-de-términos-y-acrónimos)** | Conexión a una Inteligencia Artificial externa                                | **S:** Integración mediante API externa.<br>**M:** Respuesta de la API inferior a 2 segundos en condiciones normales.<br>**A:** Posible mediante consumo de APIs REST seguras con Laravel y Node.js.<br>**R:** Añade funcionalidades avanzadas y valor diferencial al proyecto.<br>**T:** Implementación en semanas 12 hasta fin de proyecto. | Baja      |
+| **OBJ07** | **Gestión de Grupos**                                      | Creación de salas de chat cerradas con un administrador y lista de invitados. | **S:** Creación y administración de grupos privados.<br>**M:** Soporte para al menos 100 usuarios por grupo con 1 administrador activo.<br>**A:** Alcanzable con gestión de relaciones en PostgreSQL y control de permisos en Laravel.<br>**R:** Facilita la organización de conversaciones privadas dentro de la plataforma.<br>**T:** Desarrollo en semanas 4-6.                     | Media     |
+| **OBJ08** | **Implementación [IA](#glosario-de-términos-y-acrónimos)** | Conexión a una Inteligencia Artificial externa                                | **S:** Integración mediante API externa.<br>**M:** Respuesta de la API inferior a 2 segundos en condiciones normales.<br>**A:** Posible mediante consumo de APIs REST seguras con Laravel y Node.js.<br>**R:** Añade funcionalidades avanzadas y valor diferencial al proyecto.<br>**T:** Implementación en semanas 12 hasta fin de proyecto.                                          | Baja      |
 
 ---
+## Definiciones de Actores  
+
+En esta sección se identifican y describen los distintos actores que interactúan con el sistema. Un actor representa cualquier entidad que participa en el uso de la aplicación, ya sea un usuario humano o un sistema externo que intercambia información con la plataforma.  
+
+
+| ID    | ACTOR                                 | CARGO                                                                                                                                                  |
+| ----- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ACT01 | Usuario no registrado                 | Persona que accede a la aplicación sin haber iniciado sesión o sin poseer una cuenta registrada en el sistema.                                         |
+| ACT02 | Usuario registrado                    | Usuario que posee una cuenta válida dentro de la plataforma y puede utilizar las funcionalidades principales de comunicación.                          |
+| ACT03 | Administrador de servidor             | Usuario con permisos avanzados dentro de un servidor específico. Generalmente es el creador del servidor o un usuario con privilegios administrativos. |
+| ACT04 | Administrador del sistema             | Usuario encargado de la gestión global de la plataforma y del mantenimiento del sistema.                                                               |
+| ACT05 | Servicio de autenticación             | Servicio encargado de validar la identidad de los usuarios dentro de la aplicación.                                                                    |
+| ACT06 | Servicio de mensajería en tiempo real | Servicio encargado de gestionar el intercambio de mensajes instantáneos entre los usuarios de EchoNow.                                                 |
+| ACT07 | Servicio VoIP                         | Sistema responsable de gestionar las llamadas de voz entre usuarios dentro de la plataforma.                                                           |
+
+---
+## Especificación Funcional  
+### Diagrama de Casos de Uso 
+
+<img src="images/Diagrama-caso-uso-echoNow.png" alt="Diagrama-caso-uso">
+
+### Tablas de especificación de Casos de Uso
+
+
+---
+
+## Normativa y Legislación
+
+El desarrollo y funcionamiento de **EchoNow** debe cumplir con distintas normativas legales relacionadas con la protección de datos, comercio electrónico, accesibilidad web y uso de software de terceros. A continuación se detallan las principales regulaciones aplicables al proyecto.
+
+---
+
+### RGPD y LOPDGDD (Protección de Datos)
+
+La aplicación EchoNow gestiona información personal de los usuarios para poder ofrecer sus servicios de comunicación.
+
+**Datos de registro**  
+- Nombre de usuario
+- Dirección de correo electrónico
+- Contraseña cifrada (hash)
+
+**Datos técnicos**  
+- Fecha y hora de registro
+- Registros de acceso (logs de seguridad)
+
+**Datos generados por el uso del sistema**  
+- Mensajes enviados en conversaciones
+- Identificadores de servidores, grupos y canales
+- Metadatos de comunicaciones
+
+Las contraseñas nunca se almacenan en texto plano, sino mediante algoritmos de cifrado seguros proporcionados por el sistema de autenticación de Laravel.  
+
+**Ubicación de la base de datos**
+
+La base de datos PostgreSQL del sistema se alojará en un servidor Linux de manera local en el contexto de desarrollo y en un servidor de Linux cuando se encuentre en un entorno de producción.  
+
+Además si la velocidad de conexión nos lo permite podremos hacer una copia de seguridad en un servicio externo llamado [Supabase](https://supabase.com/) que almacena los datos de nuestra organización en un servidor configurado en la región de EU.   
+
+**Derecho al olvido y eliminación de datos**  
+
+Los usuarios podrán ejercer sus derechos de protección de datos:
+
+- Derecho de acceso
+- Derecho de rectificación
+- Derecho de supresión (**derecho al olvido**)
+- Derecho de limitación del tratamiento
+
+Para solicitar la eliminación de datos, el usuario podrá:
+
+1. Solicitar la eliminación desde la configuración de su cuenta.
+2. Contactar con el administrador del sistema mediante correo electrónico (echonow@support.com).  
+
+**Política de Cookies**  
+
+EchoNow utilizará únicamente el almacenamiento interno del navegador para guardar las credenciales del usuario.
+
+- Mantener la sesión de usuario iniciada.
+- Gestionar autenticación segura.
+
+En un principio no se utilizarán cookies de terceros ni cookies publicitarias.
+
+---
+
+### LSSI-CE (Comercio Electrónico)
+
+**Transparencia en servicios**
+
+- Los precios estén claramente indicados.
+- Se especifiquen los impuestos aplicables.
+- Se indiquen las condiciones de contratación.
+- Se informe del proceso de compra antes de realizar el pago.
+
+Esta condición es especifica únicamente para la mejora de planes si el usuario final lo decide.  
+
+**Aviso Legal**  
+
+La página web o aplicación incluirá una sección de *Aviso Legal* visible donde se indiquen los datos del responsable del proyecto:
+
+- Nombre del responsable
+- Dirección de contacto
+- Correo electrónico de contacto
+- Información sobre el uso de la plataforma  
+
+---
+
+### Accesibilidad Web (WCAG)
+
+**Nivel de conformidad**  
+
+El objetivo del proyecto será cumplir con el *Nivel AA*.
+
+**Medidas de accesibilidad implementadas**  
+
+1. Contraste de colores
+	- Se garantizará un contraste suficiente entre texto y fondo para facilitar la lectura.
+2. Texto alternativo en imágenes
+	- Todas las imágenes incluirán atributos *alt*.
+3. Navegación mediante teclado
+	- Todos los elementos interactivos serán accesibles mediante teclado mediante la tecla *tab*.
+4. Diseño *Responsive*
+	- La interfaz será adaptable a diferentes tamaños de pantalla (*xl, lg, md, sm*) mediante estilos Tailwind.  
+
+---
+
+### Licencias de Software
+
+**Tecnologías principales**  
+
+| Tecnología   | Tipo                 | Licencia           |
+| ------------ | -------------------- | ------------------ |
+| Laravel      | Framework backend    | MIT                |
+| React        | Librería frontend    | MIT                |
+| Node.js      | Entorno de ejecución | MIT                |
+| Tailwind CSS | Framework de estilos | MIT                |
+| PostgreSQL   | Base de datos        | PostgreSQL License |
+
+**Librerías adicionales (Backend)**
+
+| Librería                      | Uso                                                                     | Licencia |
+| ----------------------------- | ----------------------------------------------------------------------- | -------- |
+| laravel/echo                  | Laravel Echo library for beautiful Reverb, Pusher, and Ably integration | MIT      |
+| beyondcode/laravel-websockets | Websockets for Laravel. Done right                                      | MIT      |
+| reliese/laravel               | Reliese Laravel Model Generator                                         | MIT      |
+| tymon/jwt-auth                | JSON Web Token Authentication for Laravel & Lumen                       | MIT      |
+| laravel/fortify               | Backend controllers and scaffolding for Laravel authentication          | MIT      |
+| laravel/sanctum               | Backend controllers and scaffolding for Laravel authentication          | MIT      |
+
+
+**Librerías adicionales (Frontend)**
+
+| Librería              | Uso                                                                | Licencia           |
+| --------------------- | ------------------------------------------------------------------ | ------------------ |
+| pusher-js             | Cliente para comunicación bidireccional                            | MIT                |
+| lineicons             | Set de iconos optimizados para interfaces web.                     | (MIT/Custom)       |
+| use-sound             | Hook de React para reproducir efectos de sonido.                   | MIT                |
+| fontsource/space-mono | Fuente autoalojada (Space Mono) para mejorar el rendimiento.       | Open Font License |
+| axios                 | Cliente HTTP basado en promesas para realizar peticiones a la API. | MIT                |
+
 
 # Glosario de Términos y Acrónimos  
 
