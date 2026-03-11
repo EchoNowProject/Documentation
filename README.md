@@ -428,6 +428,10 @@ En esta sección se identifican y describen los distintos actores que interactú
 
 ### Tablas de especificación de Casos de Uso
 
+### Diagrama de Gantt
+
+<img src="images/Diagrama-de-gantt.png" alt="Diagrama-de-gantt">
+
 
 ---
 
