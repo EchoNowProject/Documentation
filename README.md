@@ -428,9 +428,101 @@ En esta sección se identifican y describen los distintos actores que interactú
 
 ### Tablas de especificación de Casos de Uso
 
+<img src="images/casosUso/iniciar-sesion.png">
+
+---
+
+<img src="images/casosUso/cerrar-sesion.png">
+
+---
+
+<img src="images/casosUso/registrarse.png">
+
+---
+
+<img src="images/casosUso/acceso-landing-page.png">
+
+---
+
+<img src="images/casosUso/actualizar-planes.png">
+
+---
+
+<img src="images/casosUso/acceso-home.png">
+
+---
+
+<img src="images/casosUso/cambiar-configuracion.png">
+
+---
+
+<img src="images/casosUso/noticaciones-settings.png">
+
+---
+
+<img src="images/casosUso/privacidad-settings.png">
+
+---
+
+<img src="images/casosUso/cambiar-estado.png">
+
+---
+
+<img src="images/casosUso/roles-generales.png">
+
+---
+
+<img src="images/casosUso/cambios-logicos.png">
+
+---
+
+<img src="images/casosUso/ui-ux.png">
+
+---
+
+<img src="images/casosUso/crear-chat-privado.png">
+
+---
+
+<img src="images/casosUso/eliminar-chat-privado.png">
+
+---
+
+<img src="images/casosUso/crear-grupo.png">
+
+---
+
+<img src="images/casosUso/eliminar-grupo.png">
+
+---
+
+<img src="images/casosUso/crear-servidor.png">
+
+---
+
+<img src="images/casosUso/eliminar-servidor.png">
+
+---
+
+<img src="images/casosUso/administrar-roles-servidor.png">
+
+---
+
+<img src="images/casosUso/invitar-usuarios.png">
+
+---
+
+<img src="images/casosUso/mandar-mensaje.png">
+
+---
+
+<img src="images/casosUso/comenzar-llamada.png">
+
+---
+
 ### Diagrama de Gantt
 
-<img src="images/Diagrama-de-gantt.png" alt="Diagrama-de-gantt">
+<img src="images/Diagrama-de-gantt.png">
 
 
 ---
