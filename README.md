@@ -248,9 +248,10 @@ Dentro del mercado nacional e internacional de las plataformas de [VOIP](#glosar
 ## Análisis de Viabilidad  
 
 1. **Análisis Técnico:**   
-	La respuesta breve es **NO**.
-	EchoNow no se podrá desarrollar al completo en los limites temporales establecidos debido a que es una aplicación muy ambiciona y con muchas funcionalidades por implementar. Sin embargo la gran mayoría de funcionalidad pensada en un principio **SI** se podrá completar dentro de los limites.   
-	Más tarde nos dedicaremos a explicar las funcionalidades técnicas del desarrollo y quedará mucho mas claro el porque necesitamos más duración de desarrollo para completarlo.   
+	EchoNow no podrá desarrollarse completamente dentro de los límites temporales establecidos, ya que se trata de una aplicación muy ambiciosa que incluye numerosas funcionalidades por implementar.  
+	
+	No obstante, la mayor parte de las funcionalidades planteadas inicialmente sí podrán completarse dentro del tiempo previsto.  
+	Más adelante se explicarán con mayor detalle las funcionalidades técnicas del desarrollo, lo que permitirá comprender mejor por qué es necesario ampliar el tiempo de desarrollo para completar el proyecto en su totalidad.  
 2. **Análisis Económico:**    
 	Al optar por una arquitectura simple y al utilizar un servidor Linux para la lógica de backend en Laravel y Vercel para el [framework](#glosario-de-términos-y-acrónimos) React se logra una infraestructura profesional con una inversión entre los **50€ y 90€**  *(Este valor puede variar según el progreso de la aplicación )*
 
@@ -522,7 +523,7 @@ En esta sección se identifican y describen los distintos actores que interactú
 
 ### Diagrama de Gantt
 
-<img src="images/Diagrama-de-gantt.png">
+<img src="images/Diagrama-de-Gantt.png">
 
 
 ---
