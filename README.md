@@ -33,11 +33,13 @@ Esta obra está bajo una licencia Reconocimiento-Compartir bajo la misma licenci
 	      	2. Requisitos No Funcionales (RNF)  
 	      	3. Requisitos de Información (IRQ - Persistencia)  
 	5. [Normativa y Legislación](#normativa-y-legislación)   
-3. [Diseño Tecnológico y Arquitectura](Diseño_Tecnológico_Arquitectura.md)
-	1. Stack Tecnológico  
-	2. Arquitectura del Software  
-	3.  Diseño de Datos  
-	4. Diseño de Interfaz  
+3. [Diseño Tecnológico y Arquitectura](#Diseño-Tecnológico-y-Arquitectura)
+	1. [Stack Tecnológico](#stack-tecnológico)  
+	2. [Arquitectura del Software](#arquitectura-del-software)  
+	3. [Diseño de Datos](#diseño-de-datos)  
+		1. [Diagrama de Entidades](#diagrama-de-entidades)  
+		2. [Diagrama de clases UML](#diagrama-de-clases-UML)  
+	4. [Diseño de Interfaz](#diseño-de-interfaz)  
 4. [Planificación y Metodología](Planificación_Metodologia.md)  
 	1. Metodología de Trabajo  
 	2. Planificación Temporal (Gantt)  
@@ -660,6 +662,62 @@ El objetivo del proyecto será cumplir con el *Nivel AA*.
 | fontsource/space-mono | Fuente autoalojada (Space Mono) para mejorar el rendimiento.       | Open Font License |
 | axios                 | Cliente HTTP basado en promesas para realizar peticiones a la API. | MIT                |
 
+# Diseño Tecnológico y Arquitectura  
+
+En esta fase transformamos los requisitos definidos en el entregable anterior en una solución técnica estructurada. Se define el cómo se construye el sistema mediante modelado, arquitectura y diseño visual. 
+## Stack Tecnológico
+
+---
+## Arquitectura del Software  
+
+El proyecto EchoNow presenta una arquitectura bien estructurada y desacoplada, donde se separan claramente las responsabilidades entre frontend (React) para la interfaz de usuario, backend (Laravel) para la lógica de negocio y PostgreSQL para la persistencia de datos.  
+La lógica del sistema se gestiona de forma centralizada en el backend, garantizando seguridad, escalabilidad y mantenibilidad, mientras que la comunicación se realiza mediante API REST (JSON) y WebSockets para tiempo real.  
+Además, toda la aplicación backend está organizada siguiendo el patrón MVC (Modelo-Vista-Controlador), lo que permite dividir correctamente la gestión de datos, la lógica y la presentación, evitando el acoplamiento del código y facilitando su evolución futura.  
+
+-  **📂 DIVISIÓN DE RESPONSABILIDADES**  
+  
+El sistema EchoNow presenta una clara separación de responsabilidades, lo que permite evitar el acoplamiento entre sus distintas partes y facilita la escalabilidad y el mantenimiento del proyecto. Esta separación se basa en una arquitectura desacoplada dividida en tres capas principales.  
+Por un lado, el frontend, desarrollado con React, se encarga exclusivamente de la interfaz de usuario (UI) y de la interacción con el usuario. Por otro lado, el backend, implementado con Laravel, gestiona el procesamiento de datos, la lógica del sistema y la exposición de servicios. Finalmente, la base de datos PostgreSQL se encarga del almacenamiento persistente de la información.  
+Además, el uso del patrón MVC en Laravel refuerza esta separación. Diferenciando entre modelos (datos), vistas (representación) y controladores (gestión de la lógica). Esta estructura permite una organización clara del código y evita dependencias innecesarias entre componentes.  
+
+- **🧠 LÓGICA DE NEGOCIO**  
+  
+La lógica de negocio de la aplicación se encuentra centralizada en el backend, concretamente en el framework Laravel. Esto garantiza que todas las reglas del sistema se gestionen de forma coherente y segura, evitando que el frontend asuma responsabilidades que no le corresponden.  
+Dentro del backend, la lógica se implementa principalmente en los controladores, modelos y servicios de Laravel. Aquí se definen aspectos clave como la autenticación de usuarios, la gestión de permisos mediante roles, la creación y administración de servidores, grupos y canales, así como el envío y recepción de mensajes.  
+Asimismo, Laravel proporciona herramientas integradas para la validación de datos y la seguridad, lo que permite aplicar reglas de negocio como el control de acceso, la verificación de credenciales o la integridad de la información. De este modo, el sistema mantiene un comportamiento consistente y fiable.  
+
+- **💾 PERSISTENCIA DATOS**  
+    
+La persistencia de datos en EchoNow se gestiona mediante una base de datos relacional PostgreSQL, que garantiza un almacenamiento robusto, consistente y escalable. El acceso a los datos se realiza a través del ORM Eloquent de Laravel, lo que facilita la interacción con la base de datos mediante modelos y relaciones bien definidas.  
+En la base de datos se almacenan distintos tipos de información, como los datos de usuario (correo electrónico, contraseña cifrada), mensajes, servidores, canales, roles y registros de actividad. Todo ello se gestiona siguiendo principios de integridad y consistencia de datos.  
+En cuanto a la seguridad, las contraseñas se almacenan utilizando técnicas de cifrado hash, evitando su almacenamiento en texto plano.  
+
+- **🌐 INTERFAZ DE COMUNICACIÓN**  
+  
+La comunicación entre el frontend y el backend se realiza mediante una interfaz basada en APIs REST y WebSockets, lo que permite combinar operaciones tradicionales con comunicación en tiempo real.  
+Por un lado, la API REST utiliza el protocolo HTTP y el formato JSON para el intercambio de datos. Esta se emplea en operaciones como el registro e inicio de sesión de usuarios, la gestión de recursos (usuarios, servidores, mensajes) y la configuración del sistema.  
+Por otro lado, para la mensajería en tiempo real se utilizan WebSockets, implementados mediante Laravel WebSockets, Laravel Echo y la librería pusher.js en el frontend. Esta tecnología permite una comunicación bidireccional y persistente entre cliente y servidor, eliminando la necesidad de recargar la página y reduciendo la latencia en el envío de mensajes.  
+
+
+## Diseño de Datos  
+
+El diseño de datos de EchoNow se basa en un modelo relacional implementado con PostgreSQL, orientado a garantizar la integridad, consistencia y escalabilidad de la información. Las entidades principales, como usuarios, mensajes, servidores, canales y roles, están correctamente estructuradas y relacionadas entre sí mediante claves primarias y foráneas.  
+
+Además, el uso de Eloquent ORM en Laravel facilita la gestión de estas relaciones y permite un acceso eficiente y seguro a los datos. Este enfoque asegura un sistema robusto, preparado para soportar un crecimiento progresivo de la aplicación.    
+
+### Diagrama de Entidades  
+
+<img src="images/Diagrama-ER.png" alt="Diagrama Entidad-Relacion">
+
+### Diagrama de clases UML  
+
+<img src="images/Diagrama-de-clases-UML.png" alt="Diagrama de clases UML">
+
+---
+
+## Diseño de Interfaz
+
+---
 
 # Glosario de Términos y Acrónimos  
 
