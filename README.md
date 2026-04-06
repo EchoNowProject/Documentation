@@ -28,18 +28,17 @@ Esta obra está bajo una licencia Reconocimiento-Compartir bajo la misma licenci
 	3. [Especificación Funcional](#especificación-funcional)
 		1. [Diagrama de Casos de Uso](#diagrama-de-casos-de-uso) 
 		2. [Tablas de especificación de Casos de Uso](#tablas-de-especificación-de-casos-de-uso)
-	4. Requisitos del Sistema (SRS)  
-	      	1. Requisitos Funcionales (RF)  
-	      	2. Requisitos No Funcionales (RNF)  
-	      	3. Requisitos de Información (IRQ - Persistencia)  
+	4. [Requisitos del Sistema (SRS)](#requisitos-del-sistema-srs)
+		1. [Requisitos Funcionales (RF)](#requisitos-funcionales-rf)
+		2. [Requisitos No Funcionales (RNF)](#requisitos-no-funcionales-rnf)
+		3. [Requisitos de Información (IRQ)](#requisitos-de-información-irq)
 	5. [Normativa y Legislación](#normativa-y-legislación)   
 3. [Diseño Tecnológico y Arquitectura](#Diseño-Tecnológico-y-Arquitectura)
-	1. [Stack Tecnológico](#stack-tecnológico)  
-	2. [Arquitectura del Software](#arquitectura-del-software)  
-	3. [Diseño de Datos](#diseño-de-datos)  
-		1. [Diagrama de Entidades](#diagrama-de-entidades)  
+	1. [Arquitectura del Software](#arquitectura-del-software)  
+	2. [Diseño de Datos](#diseño-de-datos)  
+		1. [Diagrama de Modelo Relacional](#diagrama-de-modelo-relacional)  
 		2. [Diagrama de clases UML](#diagrama-de-clases-UML)  
-	4. [Diseño de Interfaz](#diseño-de-interfaz)  
+	3. [Diseño de Interfaz](#diseño-de-interfaz)  
 4. [Planificación y Metodología](Planificación_Metodologia.md)  
 	1. Metodología de Trabajo  
 	2. Planificación Temporal (Gantt)  
@@ -250,11 +249,11 @@ Dentro del mercado nacional e internacional de las plataformas de [VOIP](#glosar
 ## Análisis de Viabilidad  
 
 1. **Análisis Técnico:**   
-	EchoNow no podrá desarrollarse completamente dentro de los límites temporales establecidos, ya que se trata de una aplicación muy ambiciosa que incluye numerosas funcionalidades por implementar.  
+	EchoNow podrá desarrollarse completamente dentro de los límites temporales establecidos, ya que se trata de una aplicación muy ambiciosa que incluye numerosas funcionalidades por implementar.  
 	
 	No obstante, la mayor parte de las funcionalidades planteadas inicialmente sí podrán completarse dentro del tiempo previsto.  
 	Más adelante se explicarán con mayor detalle las funcionalidades técnicas del desarrollo, lo que permitirá comprender mejor por qué es necesario ampliar el tiempo de desarrollo para completar el proyecto en su totalidad.  
-2. **Análisis Económico:**    
+1. **Análisis Económico:**    
 	Al optar por una arquitectura simple y al utilizar un servidor Linux para la lógica de backend en Laravel y Vercel para el [framework](#glosario-de-términos-y-acrónimos) React se logra una infraestructura profesional con una inversión entre los **50€ y 90€**  *(Este valor puede variar según el progreso de la aplicación )*
 
 ## Herramientas y Tecnologías
@@ -272,10 +271,6 @@ Esta separación nos permitirá trabajar de forma más organizada, escalable y p
 Para la parte del servidor utilizaremos **Laravel 12**, que será el repositorio alojado en un servidor Linux.  
 El servidor estará basado en **Ubuntu Server 22.04 LTS**, elegida por su **estabilidad, soporte a largo plazo (LTS)** y **seguridad**, lo que garantiza un entorno confiable para desplegar aplicaciones de producción.  
 Ubuntu también ofrece amplia documentación y compatibilidad con herramientas modernas de desarrollo y despliegue de PHP, lo que facilita la gestión del servidor y el mantenimiento del proyecto a largo plazo.
-
-Laravel es uno de los frameworks más utilizados del ecosistema PHP y ofrece múltiples ventajas:
-
-- 🔐 **Seguridad integrada**: Protección contra ataques comunes como SQL Injection, XSS y CSRF.
 
 Laravel es uno de los frameworks más utilizados del ecosistema PHP y ofrece múltiples ventajas:
 
@@ -412,22 +407,27 @@ Los  Objetivos funcionales se distribuirán de la siguiente manera:
 
 En esta sección se identifican y describen los distintos actores que interactúan con el sistema. Un actor representa cualquier entidad que participa en el uso de la aplicación, ya sea un usuario humano o un sistema externo que intercambia información con la plataforma.  
 
+**Casos de uso**
 
-| ID    | ACTOR                                 | CARGO                                                                                                                                                  |
-| ----- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ACT01 | Usuario no registrado                 | Persona que accede a la aplicación sin haber iniciado sesión o sin poseer una cuenta registrada en el sistema.                                         |
-| ACT02 | Usuario registrado                    | Usuario que posee una cuenta válida dentro de la plataforma y puede utilizar las funcionalidades principales de comunicación.                          |
-| ACT03 | Administrador de servidor             | Usuario con permisos avanzados dentro de un servidor específico. Generalmente es el creador del servidor o un usuario con privilegios administrativos. |
-| ACT04 | Administrador del sistema             | Usuario encargado de la gestión global de la plataforma y del mantenimiento del sistema.                                                               |
-| ACT05 | Servicio de autenticación             | Servicio encargado de validar la identidad de los usuarios dentro de la aplicación.                                                                    |
-| ACT06 | Servicio de mensajería en tiempo real | Servicio encargado de gestionar el intercambio de mensajes instantáneos entre los usuarios de EchoNow.                                                 |
-| ACT07 | Servicio VoIP                         | Sistema responsable de gestionar las llamadas de voz entre usuarios dentro de la plataforma.                                                           |
+| ID    | ACTOR                                 | CARGO                                                                                                                                                  |     |
+| ----- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| ACT01 | Usuario no registrado                 | Persona que accede a la aplicación sin haber iniciado sesión o sin poseer una cuenta registrada en el sistema.                                         |     |
+| ACT02 | Usuario registrado                    | Usuario que posee una cuenta válida dentro de la plataforma y puede utilizar las funcionalidades principales de comunicación.                          |     |
+| ACT03 | Administrador de servidor             | Usuario con permisos avanzados dentro de un servidor específico. Generalmente es el creador del servidor o un usuario con privilegios administrativos. |     |
+| ACT04 | Administrador del sistema             | Usuario encargado de la gestión global de la plataforma y del mantenimiento del sistema.                                                               |     |
+
+**Servicios adicionales**
+
+| ACT05 | Servicio de autenticación             | Servicio encargado de validar la identidad de los usuarios dentro de la aplicación.                    |
+| ----- | ------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| ACT06 | Servicio de mensajería en tiempo real | Servicio encargado de gestionar el intercambio de mensajes instantáneos entre los usuarios de EchoNow. |
+| ACT07 | Servicio VoIP                         | Sistema responsable de gestionar las llamadas de voz entre usuarios dentro de la plataforma.           |
 
 ---
 ## Especificación Funcional  
 ### Diagrama de Casos de Uso 
 
-<img src="images/Diagrama-caso-uso-echoNow.png" alt="Diagrama-caso-uso">
+<img src="images/diagramas/Diagrama-caso-uso-echoNow.png" alt="Diagrama-caso-uso">
 
 ### Tablas de especificación de Casos de Uso
 
@@ -522,10 +522,69 @@ En esta sección se identifican y describen los distintos actores que interactú
 <img src="images/casosUso/comenzar-llamada.png">
 
 ---
+## Requisitos del Sistema (SRS)
+
+### Requisitos Funcionales (RF)  
+
+| ID   | Nombre corto               | Descripción detallada                                                                                                                                                          | Actor        | Prioridad |
+| ---- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ | --------- |
+| RF01 | Registro de usuario        | El sistema permite crear una cuenta nueva con nombre de usuario, correo electrónico y contraseña. Las contraseñas se almacenan cifradas mediante hash.                         | ACT01        | Alta      |
+| RF02 | Inicio de sesión           | El sistema valida las credenciales del usuario (correo + contraseña) y otorga acceso a la aplicación generando un token de sesión (JWT).                                       | ACT02        | Alta      |
+| RF03 | Cierre de sesión           | El sistema permite al usuario cerrar su sesión activa, invalidando el token y redirigiendo a la pantalla de inicio.                                                            | ACT02        | Alta      |
+| RF04 | Acceso a landing page      | El sistema muestra una página pública accesible sin autenticación con información del producto, planes y botones de acción.                                                    | ACT01        | Alta      |
+| RF05 | Acceso a home              | Tras autenticarse, el sistema redirige al usuario al panel principal donde puede ver sus conversaciones, grupos y servidores disponibles.                                      | ACT02        | Alta      |
+| RF06 | Cambiar configuración      | El sistema permite al usuario modificar sus preferencias generales de cuenta: nombre de usuario, avatar y datos de perfil.                                                     | ACT02        | Media     |
+| RF07 | Configurar notificaciones  | El sistema permite al usuario activar o desactivar notificaciones por tipo de evento (mensaje, mención, llamada).                                                              | ACT02        | Media     |
+| RF08 | Configurar privacidad      | El sistema permite al usuario gestionar quién puede enviarle mensajes directos o invitarle a grupos y servidores.                                                              | ACT02        | Media     |
+| RF09 | Cambiar estado             | El sistema permite al usuario cambiar su estado de presencia (disponible, ocupado, ausente, invisible).                                                                        | ACT02        | Baja      |
+| RF10 | Crear chat privado         | El sistema permite al usuario registrado iniciar una conversación de texto directa con otro usuario de la plataforma.                                                          | ACT02        | Alta      |
+| RF11 | Eliminar chat privado      | El sistema permite al usuario eliminar una conversación privada. Los mensajes se borran únicamente del lado del usuario que elimina.                                           | ACT02        | Media     |
+| RF12 | Enviar mensaje             | El sistema transmite mensajes de texto en tiempo real (latencia < 500 ms) entre los participantes del canal o conversación activa, persistiendo el contenido en base de datos. | ACT02, ACT06 | Alta      |
+| RF13 | Crear grupo                | El sistema permite al usuario crear un grupo privado, definir su nombre y añadir participantes mediante invitación directa.                                                    | ACT02        | Media     |
+| RF14 | Eliminar grupo             | El sistema permite al administrador del grupo disolver el grupo, eliminando el canal y todos sus mensajes asociados.                                                           | ACT02, ACT03 | Media     |
+| RF15 | Crear servidor             | El sistema permite al usuario crear un servidor público con nombre e imagen, generando automáticamente un enlace URL de invitación.                                            | ACT02        | Alta      |
+| RF16 | Eliminar servidor          | El sistema permite al administrador del servidor eliminarlo junto con todos sus canales, mensajes y configuraciones asociadas.                                                 | ACT03        | Media     |
+| RF17 | Administrar roles          | El sistema permite al administrador del servidor crear roles, asignar permisos específicos por rol y asignarlos a usuarios del servidor.                                       | ACT03        | Media     |
+| RF18 | Invitar usuarios           | El sistema permite al administrador invitar a usuarios a un grupo o servidor mediante enlace URL o invitación directa.                                                         | ACT02, ACT03 | Alta      |
+| RF19 | Comenzar llamada VoIP      | El sistema establece una llamada de voz bidireccional en tiempo real entre usuarios (latencia < 150 ms, pérdida de paquetes < 2%) usando WebRTC.                               | ACT02, ACT07 | Media     |
+| RF20 | Gestión de roles generales | El sistema distingue entre roles globales de la plataforma (usuario estándar, administrador del sistema) y aplica restricciones de acceso en consecuencia.                     | ACT04        | Media     |
+| RF21 | Actualizar planes          | El sistema permite al usuario visualizar y contratar planes de pago desde la sección de configuración o landing page, aplicando las funciones asociadas al plan contratado.    | ACT02        | Baja      |
+| RF22 | Diseño UI/UX responsivo    | El sistema renderiza correctamente la interfaz en dispositivos móviles y escritorio, alcanzando una puntuación mínima de 90 en Google Lighthouse y cumpliendo nivel AA WCAG.   | ACT02        | Alta      |
+
+---
+
+### Requisitos No Funcionales (RNF)  
+
+| ID    | Nombre corto                       | Descripción detallada                                                                                                                                                                        | Prioridad |
+| ----- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| RNF01 | Latencia de mensajes               | El sistema debe entregar los mensajes de texto en tiempo real con una latencia inferior a 500 ms medida por RTT entre cliente y servidor en condiciones de red estable.                      | Alta      |
+| RNF02 | Latencia VoIP                      | Las llamadas de voz deben mantener una latencia inferior a 150 ms y una pérdida de paquetes inferior al 2% en condiciones de red estable.                                                    | Alta      |
+| RNF03 | Disponibilidad del servidor        | El sistema backend debe garantizar una disponibilidad mínima del 99,9%, minimizando el tiempo de inactividad no planificado.                                                                 | Alta      |
+| RNF04 | Cifrado de contraseñas             | Todas las contraseñas de usuario deben almacenarse cifradas mediante algoritmos de hash seguros (bcrypt). Nunca se almacenarán en texto plano.                                               | Alta      |
+| RNF05 | Autenticación con JWT              | El sistema debe usar tokens JWT para gestionar las sesiones de usuario, garantizando que cada petición autenticada incluya un token válido y firmado.                                        | Alta      |
+| RNF06 | Diseño responsive                  | La interfaz debe adaptarse correctamente a los breakpoints xl, lg, md y sm definidos en Tailwind CSS, siendo funcional en dispositivos móviles y de escritorio.                              | Alta      |
+| RNF07 | Arquitectura desacoplada           | El sistema debe mantener una separación estricta entre frontend (React) y backend (Laravel), comunicándose únicamente mediante API REST y WebSockets, sin dependencias directas entre capas. | Alta      |
+| RNF08 | Patrón MVC en backend              | El código del backend debe organizarse siguiendo el patrón MVC de Laravel, separando modelos, controladores y lógica de negocio en servicios independientes.                                 | Media     |
+| RNF09 | Integridad y consistencia de datos | La base de datos PostgreSQL debe garantizar la integridad referencial mediante claves primarias y foráneas, y el ORM Eloquent debe gestionar todas las operaciones de persistencia.          | Alta      |
+| RNF10 | Tiempo de respuesta API            | Las peticiones a la API REST deben resolverse en menos de 2 segundos en condiciones normales de uso, incluyendo las llamadas a servicios externos como la API de IA.                         | Media     |
+| RNF11 | Entorno de despliegue estable      | El backend debe desplegarse sobre Ubuntu Server 22.04 LTS, garantizando estabilidad, soporte a largo plazo y compatibilidad con las herramientas del stack tecnológico.                      | Media     |
+
+
+# Requisitos de Información (IRQ)
+
+| ID    | Nombre corto          | Descripción detallada                                                                                 | Tipo de dato | Entidad  | Prioridad |
+| ----- | --------------------- | ----------------------------------------------------------------------------------------------------- | ------------ | -------- | --------- |
+| IRQ01 | Correo electrónico    | Dirección de email única usada para autenticación y comunicaciones del sistema.                       | VARCHAR(255) | Usuario  | Alta      |
+| IRQ02 | Contraseña cifrada    | Hash de la contraseña del usuario generado con bcrypt. Nunca se almacena en texto plano.              | VARCHAR(255) | Usuario  | Alta      |
+| IRQ03 | Contenido del mensaje | Texto del mensaje enviado por el usuario en una conversación, canal o grupo.                          | TEXT         | Mensaje  | Alta      |
+| IRQ04 | Enlace de invitación  | URL única autogenerada que permite a nuevos usuarios unirse al servidor.                              | VARCHAR(255) | Servidor | Alta      |
+| IRQ05 | Token de sesión       | JWT generado en el inicio de sesión, almacenado en el cliente para autenticar peticiones posteriores. | TEXT         | Sistema  | Alta      |
+
+---
 
 ### Diagrama de Gantt
 
-<img src="images/Diagrama-de-Gantt.png">
+<img src="images/diagramas/Diagrama-de-Gantt.png">
 
 
 ---
@@ -665,7 +724,6 @@ El objetivo del proyecto será cumplir con el *Nivel AA*.
 # Diseño Tecnológico y Arquitectura  
 
 En esta fase transformamos los requisitos definidos en el entregable anterior en una solución técnica estructurada. Se define el cómo se construye el sistema mediante modelado, arquitectura y diseño visual. 
-## Stack Tecnológico
 
 ---
 ## Arquitectura del Software  
@@ -705,17 +763,36 @@ El diseño de datos de EchoNow se basa en un modelo relacional implementado con 
 
 Además, el uso de Eloquent ORM en Laravel facilita la gestión de estas relaciones y permite un acceso eficiente y seguro a los datos. Este enfoque asegura un sistema robusto, preparado para soportar un crecimiento progresivo de la aplicación.    
 
-### Diagrama de Entidades  
+### Diagrama de Modelo Relacional  
 
-<img src="images/Diagrama-ER.png" alt="Diagrama Entidad-Relacion">
+<img src="images/diagramas/Diagrama-Modelo-Relacional.png" alt="Diagrama Modelo Relacional">
 
 ### Diagrama de clases UML  
 
-<img src="images/Diagrama-de-clases-UML.png" alt="Diagrama de clases UML">
+<img src="images/diagramas/Diagrama-Modelo-ER.png" alt="Diagrama Modelo ER">
 
 ---
 
 ## Diseño de Interfaz
+
+Se ha diseñado la landing cuidando especialmente la jerarquía visual, destacando el mensaje principal (“Habla, conecta, comparte. Todo en vivo.”) como foco inicial, y acompañándolo de elementos secundarios como los planes y los botones, que tienen un mayor contraste para dirigir la acción del usuario.  
+
+También he estructurado el diseño siguiendo un flujo visual en patrón Z, empezando por el logo y la navegación en la parte superior, pasando por el titular principal y terminando en los botones de acción, de forma que la lectura sea natural e intuitiva.  
+
+En cuanto a la accesibilidad, he utilizado contrastes adecuados entre el fondo y el texto para asegurar la legibilidad, y he diseñado los botones para que sean fácilmente identificables tanto por color como por forma.  
+
+He mantenido una consistencia visual en toda la interfaz, reutilizando estilos de tipografía, colores y componentes como las tarjetas de planes, para que la experiencia sea coherente.  
+
+Por último, he trabajado el espaciado usando márgenes y padding suficientes para evitar la sobrecarga visual, permitiendo que cada elemento respire y facilitando la comprensión del contenido.  
+
+**Boceto de Landig Page**  
+
+<img src="images/bocetos/Landing-page.png" alt="Boceto Landing page">  
+
+**Boceto de Landig Page**  
+
+<img src="images/bocetos/Planes.png" alt="Boceto Planes">  
+
 
 ---
 
