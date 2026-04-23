@@ -48,6 +48,7 @@ Esta obra está bajo una licencia Reconocimiento-Compartir bajo la misma licenci
 	2. Estructura del Proyecto  
 	3. Aspectos relevantes de la codificación  
 	4. Despliegue  
+	5. [Plan de Prevención de Riesgos Laborales](#plan-de-prevención-de-riesgos-laborales)
 6. [Pruebas y Control de Calidad](Pruebas_Control_Calidad.md)
 	1. Plan de Pruebas  
 	2. Registro de Incidencias  
@@ -795,7 +796,79 @@ Por último, he trabajado el espaciado usando márgenes y padding suficientes pa
 
 
 ---
+# Desarrollo e Implementación
 
+## Organización real del trabajo  
+## Estructura del Proyecto  
+## Aspectos relevantes de la codificación  
+## Despliegue  
+## Plan de Prevención de Riesgos Laborales
+
+Este documento recoge las medidas básicas de prevención de riesgos aplicadas durante el desarrollo del proyecto EchoNow, centrado en trabajo con equipos informáticos y desarrollo software.
+
+## Análisis del puesto
+
+La actividad principal del proyecto consiste en el desarrollo de una aplicación web en tiempo real, utilizando tecnologías como Laravel, React y herramientas de contenedorización. El trabajo se realiza frente a un ordenador durante periodos prolongados, lo que implica una exposición continua a pantallas y una interacción constante con dispositivos de entrada como teclado y ratón.
+
+Este tipo de actividad conlleva principalmente riesgos ergonómicos derivados de la postura mantenida en el tiempo. Una mala colocación de la silla, una altura incorrecta de la mesa o una posición inadecuada de la pantalla pueden provocar molestias en la espalda, cuello y extremidades superiores. A esto se suma la fatiga visual causada por la exposición prolongada a pantallas, especialmente en condiciones de iluminación no óptimas.
+
+También se identifican riesgos asociados al entorno físico de trabajo, como la presencia de cables, la organización del espacio o la ventilación. Aunque el nivel de peligrosidad es bajo en comparación con otros sectores, estos factores pueden derivar en incidentes si no se controlan adecuadamente.
+
+Por otro lado, el desarrollo de software implica una carga mental considerable. La resolución de problemas, la presión por plazos y la necesidad de mantener la concentración durante largos periodos pueden generar fatiga mental y estrés si no se gestionan correctamente.
+
+---
+## Medidas adoptadas
+
+Para reducir los riesgos detectados, se han aplicado una serie de ajustes en el puesto de trabajo orientados principalmente a la ergonomía. La silla se ajusta en altura para permitir una posición cómoda, manteniendo la espalda recta y los pies apoyados. La pantalla se sitúa a la altura de los ojos para evitar inclinaciones del cuello, y se mantiene una distancia adecuada que facilite la lectura sin forzar la vista.
+
+Además, se cuida la disposición de los elementos de trabajo para que el acceso al teclado y al ratón sea natural, evitando tensiones innecesarias en muñecas y brazos. En aquellos casos en los que es necesario, se utilizan elementos auxiliares como reposapiés para mejorar la postura general.
+
+Estas medidas no eliminan completamente el riesgo, pero sí lo reducen significativamente, especialmente cuando se mantienen de forma constante a lo largo del tiempo.
+
+---
+## Planificación de descansos
+
+Uno de los aspectos más importantes en este tipo de actividad es la gestión de los tiempos de descanso. El trabajo continuado frente a la pantalla puede generar fatiga tanto física como mental, por lo que se establecen pausas periódicas durante la jornada.
+
+Se realizan descansos breves de forma regular, lo que permite reducir la tensión acumulada y mejorar la concentración. Además, se aplica la regla 20-20-20, que consiste en apartar la vista de la pantalla cada cierto tiempo y enfocar a una distancia lejana durante unos segundos, ayudando a reducir la fatiga ocular.
+
+Estos descansos también se aprovechan para cambiar de postura o realizar pequeños movimientos, lo que contribuye a prevenir molestias musculares y mejora el bienestar general durante la jornada.
+
+---
+## Gestión de carga mental
+
+El desarrollo del proyecto requiere mantener un alto nivel de concentración y afrontar tareas que pueden resultar complejas. Para evitar situaciones de estrés o sobrecarga, se organiza el trabajo de forma estructurada, utilizando metodologías que permiten dividir las tareas y establecer prioridades claras.
+
+La planificación previa y la organización del trabajo ayudan a evitar acumulaciones innecesarias de tareas, reduciendo la presión y facilitando un ritmo de trabajo más equilibrado. Asimismo, se intenta mantener una distribución razonable de la carga de trabajo, evitando jornadas excesivamente largas que puedan afectar al rendimiento y a la salud.
+
+El objetivo no es únicamente mejorar la productividad, sino también garantizar que el desarrollo del proyecto se realice en condiciones sostenibles a lo largo del tiempo.
+
+---
+## Seguridad física
+
+El entorno de trabajo se mantiene en condiciones adecuadas para evitar riesgos innecesarios. Se presta especial atención al orden del espacio, evitando la acumulación de objetos y asegurando que los elementos necesarios estén correctamente organizados.
+
+Los cables de los equipos se colocan de forma que no interfieran en el paso ni generen riesgo de tropiezos. También se tiene en cuenta la ventilación del espacio, especialmente en entornos donde se utilizan varios dispositivos electrónicos, con el fin de evitar el sobrecalentamiento y mejorar el confort.
+
+En cuanto al uso de equipos eléctricos, se procura utilizar dispositivos en buen estado y evitar la sobrecarga de enchufes, reduciendo así el riesgo de fallos eléctricos o incidencias mayores.
+
+---
+## Seguridad digital
+
+Además de los riesgos físicos, en el desarrollo del proyecto se tienen en cuenta aspectos relacionados con la seguridad digital. Aunque no afectan directamente a la salud física, forman parte de un entorno de trabajo seguro y controlado.
+
+Se aplican buenas prácticas en el desarrollo del software, como la validación de datos para evitar comportamientos inesperados, el uso de variables de entorno para proteger información sensible y la implementación de mecanismos de autenticación que controlen el acceso al sistema.
+
+También se mantiene una gestión adecuada de las herramientas utilizadas, asegurando que el entorno de desarrollo sea estable y evitando configuraciones que puedan comprometer la seguridad o el correcto funcionamiento del sistema.
+
+---
+## Conclusión
+
+El desarrollo de software, aunque no presenta riesgos elevados en términos físicos, sí implica una serie de factores que pueden afectar a la salud si no se gestionan adecuadamente. La combinación de medidas ergonómicas, una correcta organización del trabajo y la atención al entorno físico permite reducir estos riesgos de forma considerable.
+
+La prevención en este contexto no debe entenderse como una obligación puntual, sino como un conjunto de hábitos que se aplican de forma continua. Mantener buenas prácticas durante el desarrollo del proyecto no solo mejora la seguridad, sino que también contribuye a un mejor rendimiento y a una mayor calidad del trabajo realizado.
+
+---
 # Glosario de Términos y Acrónimos  
 
 Glosario dedicado a la definición y/o explicación de nuevos de *términos - acrónimos - siglas*.    
