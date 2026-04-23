@@ -409,12 +409,12 @@ En esta sección se identifican y describen los distintos actores que interactú
 
 **Casos de uso**
 
-| ID    | ACTOR                                 | CARGO                                                                                                                                                  |     |
-| ----- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
-| ACT01 | Usuario no registrado                 | Persona que accede a la aplicación sin haber iniciado sesión o sin poseer una cuenta registrada en el sistema.                                         |     |
-| ACT02 | Usuario registrado                    | Usuario que posee una cuenta válida dentro de la plataforma y puede utilizar las funcionalidades principales de comunicación.                          |     |
-| ACT03 | Administrador de servidor             | Usuario con permisos avanzados dentro de un servidor específico. Generalmente es el creador del servidor o un usuario con privilegios administrativos. |     |
-| ACT04 | Administrador del sistema             | Usuario encargado de la gestión global de la plataforma y del mantenimiento del sistema.                                                               |     |
+| ID    | ACTOR                     | CARGO                                                                                                                                                  |
+| ----- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ACT01 | Usuario no registrado     | Persona que accede a la aplicación sin haber iniciado sesión o sin poseer una cuenta registrada en el sistema.                                         |
+| ACT02 | Usuario registrado        | Usuario que posee una cuenta válida dentro de la plataforma y puede utilizar las funcionalidades principales de comunicación.                          |
+| ACT03 | Administrador de servidor | Usuario con permisos avanzados dentro de un servidor específico. Generalmente es el creador del servidor o un usuario con privilegios administrativos. |
+| ACT04 | Administrador del sistema | Usuario encargado de la gestión global de la plataforma y del mantenimiento del sistema.                                                               |
 
 **Servicios adicionales**
 
@@ -789,7 +789,7 @@ Por último, he trabajado el espaciado usando márgenes y padding suficientes pa
 
 <img src="images/bocetos/Landing-page.png" alt="Boceto Landing page">  
 
-**Boceto de Landig Page**  
+**Boceto de la selección de Planes**  
 
 <img src="images/bocetos/Planes.png" alt="Boceto Planes">  
 
