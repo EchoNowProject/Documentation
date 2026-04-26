@@ -250,10 +250,12 @@ Dentro del mercado nacional e internacional de las plataformas de [VOIP](#glosar
 ## Análisis de Viabilidad  
 
 1. **Análisis Técnico:**   
-	EchoNow podrá desarrollarse completamente dentro de los límites temporales establecidos, ya que se trata de una aplicación muy ambiciosa que incluye numerosas funcionalidades por implementar.  
-	
-	No obstante, la mayor parte de las funcionalidades planteadas inicialmente sí podrán completarse dentro del tiempo previsto.  
-	Más adelante se explicarán con mayor detalle las funcionalidades técnicas del desarrollo, lo que permitirá comprender mejor por qué es necesario ampliar el tiempo de desarrollo para completar el proyecto en su totalidad.  
+	EchoNow podrá desarrollarse dentro de los límites temporales establecidos, aunque para lograrlo será necesario ajustar el alcance inicial del proyecto, dado que se trata de una aplicación ambiciosa con múltiples funcionalidades.
+	En particular, se ha decidido priorizar las funcionalidades esenciales y posponer otras de mayor complejidad técnica. Entre estas, se encuentra la eliminación del chat de voz integrado en toda la plataforma, así como la reducción de la infraestructura prevista mediante la eliminación de ciertos servidores inicialmente contemplados. Estas decisiones permiten simplificar el desarrollo, reducir la carga técnica y optimizar los tiempos de implementación.
+
+	No obstante, la mayor parte de las funcionalidades principales sí podrán completarse dentro del tiempo previsto, garantizando una versión funcional y coherente del sistema.
+
+	Las funcionalidades excluidas en esta fase formarán parte de una segunda versión de la aplicación, donde podrán desarrollarse con mayor profundidad y sin las limitaciones temporales actuales. Más adelante se detallarán las características técnicas del sistema, lo que permitirá entender mejor la planificación adoptada y la necesidad de esta división por fases.
 1. **Análisis Económico:**    
 	Al optar por una arquitectura simple y al utilizar un servidor Linux para la lógica de backend en Laravel y Vercel para el [framework](#glosario-de-términos-y-acrónimos) React se logra una infraestructura profesional con una inversión entre los **50€ y 90€**  *(Este valor puede variar según el progreso de la aplicación )*
 
@@ -587,6 +589,40 @@ En esta sección se identifican y describen los distintos actores que interactú
 
 <img src="images/diagramas/Diagrama-de-Gantt.png">
 
+**Tabla resumen**
+
+| Fase | Actividad | Duración (semanas) |
+|------|----------|-------------------|
+| **Análisis** | Requisitos funcionales | 2 |
+| | Requisitos no funcionales | 2 |
+| | Análisis VoIP | 1 |
+| **Diseño** | Arquitectura del sistema | 2 |
+| | Base de datos | 2 |
+| | Modelo entidad-relación | 2 |
+| | API REST / WebSocket | 2 |
+| | Prototipado | 2 |
+| | Autenticación | 2 |
+| **Backend** | Entorno de desarrollo | 2 |
+| | API REST | 2 |
+| | Autenticación | 1 |
+| | Mensajería | 2 |
+| | WebSockets | 3 |
+| | Sistema VoIP | 3 |
+| **Frontend** | Entorno | 2 |
+| | Perfil usuario | 5 |
+| | Chat en tiempo real | 3 |
+| | Llamadas VoIP | 2 |
+| | Accesibilidad | 2 |
+| **Integración** | Notificaciones | 2 |
+| | Sistema VoIP | 2 |
+| | Frontend + WebSockets | 2 |
+| **Pruebas** | Backend | 2 |
+| | Frontend | 2 |
+| | VoIP | 2 |
+| | Mensajería | 1 |
+| **Despliegue** | Servidor | 1 |
+| | Base de datos prod | 1 |
+| | Variables de entorno | 1 |
 
 ---
 
@@ -767,6 +803,19 @@ Además, el uso de Eloquent ORM en Laravel facilita la gestión de estas relacio
 ### Diagrama de Modelo Relacional  
 
 <img src="images/diagramas/Diagrama-Modelo-Relacional.png" alt="Diagrama Modelo Relacional">
+
+**Diagrama de Modelo relacional desglosado**
+
+<img src="images/diagramas/modelo-relacional/modelo-relacional-1.png" alt="Diagrama Modelo Relacional desglosado 1">
+
+<img src="images/diagramas/modelo-relacional/modelo-relacional-2.png" alt="Diagrama Modelo Relacional desglosado 2">
+
+<img src="images/diagramas/modelo-relacional/modelo-relacional-3.png" alt="Diagrama Modelo Relacional desglosado 3">
+
+<img src="images/diagramas/modelo-relacional/modelo-relacional-4.png" alt="Diagrama Modelo Relacional desglosado 4">
+
+<img src="images/diagramas/modelo-relacional/modelo-relacional-5.png" alt="Diagrama Modelo Relacional desglosado 5">
+
 
 ### Diagrama de clases UML  
 
