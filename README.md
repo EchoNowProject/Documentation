@@ -48,8 +48,7 @@ Esta obra está bajo una licencia Reconocimiento-Compartir bajo la misma licenci
 	2. Estructura del Proyecto  
 	3. Aspectos relevantes de la codificación  
 	4. Despliegue  
-	5. [Configuración del entorno y estructura del proyecto](#configuración-del-entorno-y-estructura-del-proyecto)
-	6. [Plan de Prevención de Riesgos Laborales](#plan-de-prevención-de-riesgos-laborales)
+	5. [Plan de Prevención de Riesgos Laborales](#plan-de-prevención-de-riesgos-laborales)
 6. [Pruebas y Control de Calidad](Pruebas_Control_Calidad.md)
 	1. Plan de Pruebas  
 	2. Registro de Incidencias  
@@ -773,6 +772,24 @@ Además, el uso de Eloquent ORM en Laravel facilita la gestión de estas relacio
 
 <img src="images/diagramas/Diagrama-Modelo-ER.png" alt="Diagrama Modelo ER">
 
+**Diagrama de casos de uso desglosado**
+
+<img src="images/diagramas/modelo-ER/modelo-er-1.png" alt="Diagrama Modelo ER desglosado 1">
+
+<img src="images/diagramas/modelo-ER/modelo-er-2.png" alt="Diagrama Modelo ER desglosado 2">
+
+<img src="images/diagramas/modelo-ER/modelo-er-3.png" alt="Diagrama Modelo ER desglosado 3">
+
+<img src="images/diagramas/modelo-ER/modelo-er-4.png" alt="Diagrama Modelo ER desglosado 4">
+
+<img src="images/diagramas/modelo-ER/modelo-er-5.png" alt="Diagrama Modelo ER desglosado 5">
+
+<img src="images/diagramas/modelo-ER/modelo-er-6.png" alt="Diagrama Modelo ER desglosado 6">
+
+<img src="images/diagramas/modelo-ER/modelo-er-7.png" alt="Diagrama Modelo ER desglosado 7">
+
+<img src="images/diagramas/modelo-ER/modelo-er-8.png" alt="Diagrama Modelo ER desglosado 8">
+
 ---
 
 ## Diseño de Interfaz
@@ -789,9 +806,13 @@ Por último, he trabajado el espaciado usando márgenes y padding suficientes pa
 
 **Boceto de Landig Page**  
 
+<img src="images/bocetos/wireframe-1.png" alt="Wireframe Landing page">  
+
 <img src="images/bocetos/Landing-page.png" alt="Boceto Landing page">  
 
 **Boceto de la selección de Planes**  
+
+<img src="images/bocetos/wireframe-2.png" alt="Wireframe Planes">  
 
 <img src="images/bocetos/Planes.png" alt="Boceto Planes">  
 
@@ -799,102 +820,15 @@ Por último, he trabajado el espaciado usando márgenes y padding suficientes pa
 ---
 # Desarrollo e Implementación
 
-## Configuración del entorno y estructura del proyecto
-
-El proyecto sigue una estructura organizada y pensada para facilitar su mantenimiento y escalabilidad. Se ha optado por una separación clara entre frontend y backend, alojados en repositorios independientes. El frontend, desarrollado con React, está estructurado por componentes reutilizables y vistas, mientras que el backend en Laravel sigue una arquitectura por capas (controladores, y modelos), lo que permite aislar la lógica de negocio, el acceso a datos y la gestión de rutas. Esta división favorece la modularidad y hace más sencillo añadir nuevas funcionalidades o modificar las existentes sin afectar al resto del sistema.
-
-El entorno de desarrollo está configurado mediante variables de entorno guaradas en ficheros *.env*, lo que permite adaptar la aplicación fácilmente a distintos contextos (desarrollo, pruebas o producción). Estas variables incluyen puertos, credenciales de base de datos, claves de API y configuración de servicios como sockets. 
-
-Para el proceso de instalación podemos dividirlo en dos:
-
-**Backend (Laravel)**
-1. Deberemos de tener instalado PHP (se puede usar el que tenemos integrado en *Xampp*), además también deberemos de tener instalado Docker y PostgreSQL o MySQL dependiendo del motor de base de datos que se quiere utilizar en desarrollo, ya que en producción siempre se ejecutara sobre el motor de PostgreSQL.
-2. Clonar repositorio
-```
-git clone https://github.com/EchoNowProject/Backend.git
-cd Backend
-```
-3. Instalar las dependencias
-```
-composer update
-composer install
-```
-4. Correr Migraciones
-Antes de correr las migraciones deberemos de configurar el motor de la base de datos en nuestro fichero .env o usar el predeterminado.
-```
-cp .env.example .env
-php artisan migrate --seed
-```
-5. Lanzar servidor API
-```
-php artisan serve
-```
-
-**Frontend (React)**
-1. Deberemos de tener instalado Node.js
-2. Clonar repositorio
-```
-git clone https://github.com/EchoNowProject/Frontend.git
-cd Frontend
-```
-3. Instalar dependencias
-```
-cp .env.example .env
-npm i
-npm audit
-npm run build   
-```
-4. Lanzar página de desarrollo
-```
-npm run dev
-```
-
-En cuanto al sistema de persistencia, se utiliza una base de datos relacional (PostgreSQL) gestionada desde Laravel mediante migraciones y modelos Eloquent. Las tablas están diseñadas con relaciones claras entre entidades, como usuarios y conversaciones, lo que permite gestionar correctamente los datos del sistema de chat. También se incluyen seeds para generar datos de prueba, facilitando el desarrollo y las pruebas sin necesidad de introducir información manualmente.
-
-El control de versiones se realiza con Git, utilizando repositorios separados para cada parte del proyecto. Se sigue una estrategia basada en ramas para organizar el trabajo (por ejemplo, ramas de desarrollo y funcionalidades), junto con commits descriptivos que permiten entender fácilmente los cambios realizados. Además, se incluyen varios archivos `.gitignore` adecuado para evitar subir archivos innecesarios como dependencias, archivos de entorno o compilaciones.
-
-Para garantizar la seguridad de la información, se ha definido una estrategia de copias de seguridad. Únicamente se ejecuta periódicamente en el servidor Backend y se guaran todos los ficheros incluidas las imágenes y datos del usuario
-
-Por último, la arquitectura del sistema está claramente definida y justificada. Se basa en un modelo cliente-servidor donde el frontend (React) se comunica con el backend (Laravel) a través de una API REST y WebSockets. El backend gestiona la lógica  y el acceso a la base de datos, mientras que servicios adicionales como Soketi permiten la comunicación en tiempo real mediante WebSockets. Este conjunto de componentes se puede representar mediante un diagrama de arquitectura que muestre la interacción entre cliente, servidor, base de datos y servicios externos, facilitando la comprensión global del sistema.
-
-**Arquitectura general del sistema:**
-
-<img src="images/arquitectura/Arquitectura-general-del-sistema.png" alt="Arquitectura-general-del-sistema">
-
-**Arquitectura detallada del sistema:**
-
-<img src="images/arquitectura/Arquitectura-detallada-del-sistema.png" alt="Arquitectura-detallada-del-sistema">
-## Implementación inicial del Backend/servidor
-
-El sistema de enrutamiento se ha diseñado siguiendo el estilo de una API RESTful, donde cada endpoint representa un recurso del sistema (usuarios, mensajes, conversaciones, etc.). Se utilizan los métodos HTTP estándar como GET, POST, PUT y DELETE para definir las acciones sobre estos recursos. Por ejemplo, existen rutas para obtener amigos, enviar mensajes o recuperar usuarios. Estas rutas están organizadas en Laravel mediante archivos de rutas (`api.php`) o en React en mediante la carpeta `/api`  lo que permite mantener una estructura limpia y fácil de ampliar.
-  
-La lógica de negocio inicial se implementa en los controladores y servicios del backend. En este caso, incluye funcionalidades clave como el manejo del usuario principal, la obtención de amigos y la validación de datos antes de almacenarlos. Esta capa es fundamental porque transforma las peticiones del cliente en acciones reales dentro del sistema.  
-  
-La capa de acceso a datos se gestiona mediante Eloquent ORM de Laravel, lo que permite interactuar con la base de datos MySQL de forma estructurada. Se han definido modelos como `User`, `Message` y `Conversation`, junto con sus relaciones (por ejemplo, un usuario tiene muchos mensajes). La configuración de la conexión se realiza mediante variables de entorno (`.env`), donde se almacenan credenciales y parámetros sensibles. Esto permite cambiar fácilmente entre distintos entornos sin modificar el código.  
-  
-En cuanto a las operaciones CRUD, el proyecto implementa al menos las operaciones básicas necesarias para el funcionamiento del chat. Por ejemplo, se permite crear mensajes (CREATE) y consultar conversaciones o mensajes (READ). Estas operaciones incluyen validación de datos (campos obligatorios, formato correcto), sanitización y respuestas estructuradas en formato JSON. También se aplican conceptos como paginación en la carga de mensajes y relaciones entre entidades para devolver información completa y coherente.  
-  
-La gestión de errores es otro aspecto clave del backend. Se controlan las excepciones y se devuelven respuestas HTTP adecuadas según la situación. Por ejemplo, un error 400 cuando faltan datos obligatorios, un 401 si el usuario no está autenticado o un 404 cuando el recurso solicitado no existe. Esto permite que el frontend pueda interpretar correctamente los errores y actuar en consecuencia.  
-  
-En conjunto, esta implementación inicial del backend proporciona una base sólida sobre la que construir el resto del sistema, asegurando una comunicación eficiente entre cliente y servidor, una correcta gestión de datos y una estructura preparada para escalar.
-
-## Implementación inicial del Frontend/cliente
-
-En esta fase se desarrolla la interfaz de usuario que permite interactuar con el sistema. El proyecto utiliza React, organizando la aplicación en componentes reutilizables y manteniendo una estructura clara y semántica. Para los estilos se emplea Tailwind CSS, lo que facilita crear una interfaz coherente y adaptable.  
-  
-Se implementan las pantallas principales, como la vista de chat, listados de conversaciones o usuarios y formularios para enviar mensajes o crear nuevas conversaciones. Todo está estructurado de forma modular para facilitar su mantenimiento y escalabilidad.  
-  
-La comunicación con el backend se realiza mediante Axios, consumiendo la API REST desarrollada en Laravel. Además, se utilizan WebSockets (Soketi) para actualizar los mensajes en tiempo real sin recargar la página.  
-  
-El renderizado dinámico se gestiona con React, actualizando automáticamente la interfaz cuando cambian los datos, por ejemplo al recibir nuevos mensajes.  
-  
-Por último, se incluye validación en el cliente para asegurar que los datos sean correctos antes de enviarlos, junto con feedback visual como errores o desactivación de botones, mejorando la experiencia de usuario.
-
+## Organización real del trabajo  
+## Estructura del Proyecto  
+## Aspectos relevantes de la codificación  
+## Despliegue  
 ## Plan de Prevención de Riesgos Laborales
 
 Este documento recoge las medidas básicas de prevención de riesgos aplicadas durante el desarrollo del proyecto EchoNow, centrado en trabajo con equipos informáticos y desarrollo software.
 
-### Análisis del puesto
+## Análisis del puesto
 
 La actividad principal del proyecto consiste en el desarrollo de una aplicación web en tiempo real, utilizando tecnologías como Laravel, React y herramientas de contenedorización. El trabajo se realiza frente a un ordenador durante periodos prolongados, lo que implica una exposición continua a pantallas y una interacción constante con dispositivos de entrada como teclado y ratón.
 
@@ -905,7 +839,7 @@ También se identifican riesgos asociados al entorno físico de trabajo, como la
 Por otro lado, el desarrollo de software implica una carga mental considerable. La resolución de problemas, la presión por plazos y la necesidad de mantener la concentración durante largos periodos pueden generar fatiga mental y estrés si no se gestionan correctamente.
 
 ---
-### Medidas adoptadas
+## Medidas adoptadas
 
 Para reducir los riesgos detectados, se han aplicado una serie de ajustes en el puesto de trabajo orientados principalmente a la ergonomía. La silla se ajusta en altura para permitir una posición cómoda, manteniendo la espalda recta y los pies apoyados. La pantalla se sitúa a la altura de los ojos para evitar inclinaciones del cuello, y se mantiene una distancia adecuada que facilite la lectura sin forzar la vista.
 
@@ -914,7 +848,7 @@ Además, se cuida la disposición de los elementos de trabajo para que el acceso
 Estas medidas no eliminan completamente el riesgo, pero sí lo reducen significativamente, especialmente cuando se mantienen de forma constante a lo largo del tiempo.
 
 ---
-### Planificación de descansos
+## Planificación de descansos
 
 Uno de los aspectos más importantes en este tipo de actividad es la gestión de los tiempos de descanso. El trabajo continuado frente a la pantalla puede generar fatiga tanto física como mental, por lo que se establecen pausas periódicas durante la jornada.
 
@@ -923,7 +857,7 @@ Se realizan descansos breves de forma regular, lo que permite reducir la tensió
 Estos descansos también se aprovechan para cambiar de postura o realizar pequeños movimientos, lo que contribuye a prevenir molestias musculares y mejora el bienestar general durante la jornada.
 
 ---
-### Gestión de carga mental
+## Gestión de carga mental
 
 El desarrollo del proyecto requiere mantener un alto nivel de concentración y afrontar tareas que pueden resultar complejas. Para evitar situaciones de estrés o sobrecarga, se organiza el trabajo de forma estructurada, utilizando metodologías que permiten dividir las tareas y establecer prioridades claras.
 
@@ -932,7 +866,7 @@ La planificación previa y la organización del trabajo ayudan a evitar acumulac
 El objetivo no es únicamente mejorar la productividad, sino también garantizar que el desarrollo del proyecto se realice en condiciones sostenibles a lo largo del tiempo.
 
 ---
-### Seguridad física
+## Seguridad física
 
 El entorno de trabajo se mantiene en condiciones adecuadas para evitar riesgos innecesarios. Se presta especial atención al orden del espacio, evitando la acumulación de objetos y asegurando que los elementos necesarios estén correctamente organizados.
 
@@ -941,7 +875,7 @@ Los cables de los equipos se colocan de forma que no interfieran en el paso ni g
 En cuanto al uso de equipos eléctricos, se procura utilizar dispositivos en buen estado y evitar la sobrecarga de enchufes, reduciendo así el riesgo de fallos eléctricos o incidencias mayores.
 
 ---
-### Seguridad digital
+## Seguridad digital
 
 Además de los riesgos físicos, en el desarrollo del proyecto se tienen en cuenta aspectos relacionados con la seguridad digital. Aunque no afectan directamente a la salud física, forman parte de un entorno de trabajo seguro y controlado.
 
@@ -950,7 +884,7 @@ Se aplican buenas prácticas en el desarrollo del software, como la validación 
 También se mantiene una gestión adecuada de las herramientas utilizadas, asegurando que el entorno de desarrollo sea estable y evitando configuraciones que puedan comprometer la seguridad o el correcto funcionamiento del sistema.
 
 ---
-### Conclusión
+## Conclusión
 
 El desarrollo de software, aunque no presenta riesgos elevados en términos físicos, sí implica una serie de factores que pueden afectar a la salud si no se gestionan adecuadamente. La combinación de medidas ergonómicas, una correcta organización del trabajo y la atención al entorno físico permite reducir estos riesgos de forma considerable.
 
