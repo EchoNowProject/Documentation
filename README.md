@@ -961,6 +961,8 @@ La gestión de errores es otro aspecto clave del backend. Se controlan las excep
 
 En conjunto, esta implementación inicial del backend proporciona una base sólida sobre la que construir el resto del sistema, asegurando una comunicación eficiente entre cliente y servidor, una correcta gestión de datos y una estructura preparada para escalar.
 
+Además, el sistema cuenta con un plan de backups diseñado para garantizar la recuperación de la información ante posibles fallos o pérdidas de datos. Se realizan copias de seguridad periódicas de la base de datos MySQL y de los archivos críticos del proyecto mediante tareas automatizadas, almacenándose tanto en el servidor local como en servicios externos o en la nube. Asimismo, se aplican políticas de retención y procedimientos de restauración que permiten recuperar el sistema de forma rápida y segura, asegurando la disponibilidad e integridad de la información
+
 ## Implementación inicial del Frontend/cliente
 
 En esta fase se desarrolla la interfaz de usuario que permite interactuar con el sistema. El proyecto utiliza React, organizando la aplicación en componentes reutilizables y manteniendo una estructura clara y semántica. Para los estilos se emplea Tailwind CSS, lo que facilita crear una interfaz coherente y adaptable.
@@ -1044,6 +1046,58 @@ También se mantiene una gestión adecuada de las herramientas utilizadas, asegu
 El desarrollo de software, aunque no presenta riesgos elevados en términos físicos, sí implica una serie de factores que pueden afectar a la salud si no se gestionan adecuadamente. La combinación de medidas ergonómicas, una correcta organización del trabajo y la atención al entorno físico permite reducir estos riesgos de forma considerable.
 
 La prevención en este contexto no debe entenderse como una obligación puntual, sino como un conjunto de hábitos que se aplican de forma continua. Mantener buenas prácticas durante el desarrollo del proyecto no solo mejora la seguridad, sino que también contribuye a un mejor rendimiento y a una mayor calidad del trabajo realizado.
+
+---
+
+# Desarrollo Avanzado
+
+## Diagrama de Despliegue
+
+La aplicación se divide en dos entornos cloud: el backend en un VPS Ubuntu de **DigitalOcean** y el frontend en **Vercel**.
+
+<img src="images/diagramas/Diagrama-de-despliegue.png" alt="Diagrama de despliegue">  
+## Componentes
+
+| Elemento               | Tecnología       | Detalle                                               |
+| ---------------------- | ---------------- | ----------------------------------------------------- |
+| Cliente                | Navegador Web    | Consume la app vía HTTPS y WebSocket seguro (WSS)     |
+| Servidor de aplicación | Laravel :8000    | API REST alojada en DigitalOcean                      |
+| Base de datos          | PostgreSQL :5432 | Base de datos relacional en el mismo servidor         |
+| WebSockets             | Soketi (Docker)  | Comunicación en tiempo real, contenerizado            |
+| Proxy / HTTPS          | Apache + NGROK   | Conversión HTTP → HTTPS en el servidor backend        |
+| Hosting frontend       | Vercel           | Despliegue continuo de React/Node.js con HTTPS nativo |
+
+## Dominio y seguridad
+
+- **Frontend:** HTTPS gestionado automáticamente por Vercel.
+- **Backend:** NGROK proporciona el túnel HTTPS sobre Apache.
+- **WebSockets:** conexión cifrada mediante protocolo WSS.
+
+---
+## Registro de Incidencias
+
+| Fecha      | Incidencia                                       | Causa                                                                 | Solución aplicada                                                              |
+| ---------- | ------------------------------------------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| 05/01/2026 | Error de carga inicial en el frontend de EchoNow | Dependencias JavaScript incompatibles tras actualización de librerías | Se fijaron versiones estables y se regeneró el `package-lock.json`             |
+| 07/01/2026 | Fallo de autenticación de usuarios               | Token JWT expiraba antes de tiempo por mala configuración del backend | Se ajustó el tiempo de expiración y se implementó refresco automático de token |
+| 09/01/2026 | Lentitud en la carga del panel principal         | Consultas SQL no optimizadas en el backend                            | Se añadieron índices a la base de datos y paginación de resultados             |
+| 11/01/2026 | Error 500 al guardar incidencias                 | Validaciones incompletas en la API REST                               | Se añadieron validaciones de datos y manejo de excepciones                     |
+| 13/01/2026 | Problemas de diseño responsive en móviles        | Uso incorrecto de estilos CSS y breakpoints                           | Se reorganizaron componentes y se ajustaron media queries                      |
+| 15/01/2026 | Caída temporal del servidor backend              | Consumo excesivo de memoria por procesos concurrentes                 | Se optimizó la gestión de procesos y se aumentaron recursos del servidor       |
+| 18/01/2026 | Datos duplicados en registros de incidencias     | Falta de control de peticiones repetidas desde frontend               | Se implementó control anti-duplicados y validación en backend                  |
+| 20/01/2026 | Error al subir archivos adjuntos                 | Tamaño máximo de archivo mal configurado                              | Se amplió el límite permitido y se añadió compresión automática                |
+| 22/01/2026 | Notificaciones en tiempo real no funcionando     | Fallo en conexión WebSocket                                           | Se reinició el servicio y se mejoró el control de reconexión                   |
+| 25/01/2026 | Pérdida de sesión tras inactividad               | Configuración incorrecta de cookies y sesiones                        | Se revisó la persistencia de sesión y políticas de expiración                  |
+| 28/01/2026 | Incompatibilidad con navegadores antiguos        | Uso de funciones modernas no soportadas                               | Se añadieron polyfills y pruebas cross-browser                                 |
+| 30/01/2026 | Respuesta lenta de la API                        | Sobrecarga de peticiones simultáneas                                  | Se implementó caché y limitación de peticiones                                 |
+| 02/02/2026 | Error en despliegue continuo (CI/CD)             | Variables de entorno faltantes en producción                          | Se revisó configuración del pipeline y documentación                           |
+| 04/02/2026 | Problemas de permisos de usuario                 | Roles mal definidos en backend                                        | Se corrigió el sistema RBAC y pruebas de acceso                                |
+| 06/02/2026 | Frontend mostraba datos desactualizados          | Caché del navegador no invalidada correctamente                       | Se añadieron políticas de invalidación y versionado de recursos                |
+| 08/02/2026 | Error de conexión con base de datos              | Timeout en conexiones concurrentes                                    | Se ajustó el pool de conexiones y tiempos de espera                            |
+| 10/02/2026 | Fallo en generación de informes PDF              | Librería de exportación incompatible                                  | Se reemplazó la librería y se actualizaron dependencias                        |
+| 12/02/2026 | Vulnerabilidad XSS detectada                     | Falta de sanitización de entradas de usuario                          | Se implementó sanitización y validación estricta                               |
+| 14/02/2026 | Servicio de notificaciones caído                 | Configuración incorrecta del proveedor SMTP                           | Se revisó configuración y se añadieron reintentos automáticos                  |
+| 16/02/2026 | Errores aleatorios en peticiones API             | Problemas de sincronización entre microservicios                      | Se implementó cola de mensajes y control de concurrencia                       |
 
 ---
 
